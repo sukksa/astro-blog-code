@@ -1,19 +1,17 @@
 name: Deploy to GitHub Pages
 
-# 源码在 main 分支，构建产物推到 master 分支；
-# 仓库 sukksa.github.io 的 Pages 发布会读取 master 分支的静态文件，
-# 因此不需要在 GitHub 设置里把 Pages 改成 GitHub Actions。
+# 源码在本仓库（astro-blog-code），只把构建产物推送到 sukksa/sukksa.github.io 的 master。
+# 目标仓库的 Pages 发布会读取 master，因此不需要在那里放任何源码或工作流。
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
-# 同一时间只跑一个部署，避免产物互相覆盖
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
@@ -40,17 +38,20 @@ jobs:
       - name: Build site
         run: pnpm run build
 
-      # GitHub Pages 默认会走 Jekyll，_astro/ 这种下划线目录会被吃掉
+      # GitHub Pages 默认走 Jekyll，_astro/ 这类下划线目录会被忽略
       - name: Add .nojekyll
         run: touch dist/.nojekyll
 
-      - name: Deploy to master branch
+      - name: Deploy to sukksa.github.io
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          # 该密钥是 sukksa/sukksa.github.io 上的部署密钥（只对该仓库有写权限）
+          deploy_key: ${{ secrets.PAGES_DEPLOY_KEY }}
+          external_repository: sukksa/sukksa.github.io
           publish_branch: master
-          enable_jekyll: false
+          publish_dir: ./dist
+          # 每次只保留一个“当前产物”提交，避免产物历史越滚越大
+          force_orphan: true
           user_name: "github-actions[bot]"
           user_email: "41898282+github-actions[bot]@users.noreply.github.com"
-          commit_message: "chore: deploy ${{ github.sha }}"
+          commit_message: "chore: deploy astro-blog-code@${{ github.sha }}"
