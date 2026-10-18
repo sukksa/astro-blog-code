@@ -48,8 +48,9 @@ export const siteConfig: SiteConfig = {
 	subtitle: "I Love the World and Everything In It",
 
 	// 站点 URL
-	// 部署后改成你的真实域名（Vercel 项目域名或自定义域名），RSS / sitemap / OG 图片都依赖它
-	site_url: "https://sukksa-blog.vercel.app",
+	// 部署后改成你的真实域名（GitHub Pages 的 https://sukksa.github.io 或自定义域名），
+	// RSS / sitemap / OG 图片 / canonical 都依赖它
+	site_url: "https://sukksa.github.io",
 
 	// 站点描述
 	description:
