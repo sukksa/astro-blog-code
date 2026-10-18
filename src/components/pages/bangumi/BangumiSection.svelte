@@ -107,15 +107,16 @@ const filters = $derived(() => {
 			count: safeItems.length,
 		},
 		{
-			value: "collect",
-			label: getFilterLabel("collect"),
-			count: counts.collect || 0,
-		},
-		{
 			value: "doing",
 			label: getFilterLabel("doing"),
 			count: counts.doing || 0,
 		},
+		{
+			value: "collect",
+			label: getFilterLabel("collect"),
+			count: counts.collect || 0,
+		},
+
 		{ value: "wish", label: getFilterLabel("wish"), count: counts.wish || 0 },
 		{
 			value: "on_hold",
@@ -214,40 +215,25 @@ function goToPage(page: number) {
 
 <div class="media-section" class:hidden={!isActive} data-section={sectionId}>
   {#if safeItems.length > 0}
-    <FilterControls
-      filters={filters()}
-      activeFilter={activeFilter}
-      onFilterChange={handleFilterChange}
-    />
+    <FilterControls filters={filters()} {activeFilter} onFilterChange={handleFilterChange} />
 
     <div class={gridClass}>
       {#each visibleItems as item (item.subject_id)}
         <div
           class="media-item"
           data-item-section={sectionId}
-          data-item-status={STATUS_MAP[item.type as keyof typeof STATUS_MAP] || "unknown"}
-        >
-          <Card item={item} loadImage={isActive} {subjectBaseUrl} {nsfw} />
+          data-item-status={STATUS_MAP[item.type as keyof typeof STATUS_MAP] || 'unknown'}>
+          <Card {item} loadImage={isActive} {subjectBaseUrl} {nsfw} />
         </div>
       {/each}
     </div>
 
     {#if isInfinite}
       {#if hasMore}
-        <div
-          bind:this={sentinelEl}
-          class="h-10"
-          aria-hidden="true"
-          data-infinite-sentinel={sectionId}
-        ></div>
+        <div bind:this={sentinelEl} class="h-10" aria-hidden="true" data-infinite-sentinel={sectionId}></div>
       {/if}
     {:else}
-      <ClientPagination
-        totalItems={filteredItems.length}
-        itemsPerPage={itemsPerPage}
-        currentPage={currentPage}
-        onPageChange={goToPage}
-      />
+      <ClientPagination totalItems={filteredItems.length} {itemsPerPage} {currentPage} onPageChange={goToPage} />
     {/if}
   {:else}
     <div class="text-center py-12">
@@ -256,4 +242,3 @@ function goToPage(page: number) {
     </div>
   {/if}
 </div>
-
