@@ -48,7 +48,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件类型：公告组件
 			type: "announcement",
 			// 是否启用该组件
-			enable: true,
+			enable: false,
 			// 组件位置
 			position: "top",
 			// 是否在文章详情页显示
@@ -58,9 +58,9 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			// 组件类型：音乐播放器
 			type: "music",
 			// 是否启用该组件（musicConfig 里换成自己的歌单后再打开）
-			enable: false,
+			enable: true,
 			// 组件位置
-			position: "top",
+			position: "sticky",
 			// 是否在文章详情页显示
 			showOnPostPage: true,
 		},
@@ -116,6 +116,25 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 			},
 		},
 		{
+			// 组件类型：日历组件
+			type: "calendar",
+			// 是否启用该组件
+			enable: true,
+			// 是否显示组件标题
+			showTitle: false,
+			// 组件位置
+			position: "top",
+			// 是否在文章详情页显示
+			showOnPostPage: false,
+			// 组件专属配置
+			specificConfig: {
+				calendar: {
+					// 是否显示年度文章热力图
+					showHeatmap: false,
+				},
+			},
+		},
+		{
 			// 组件类型：站点统计组件
 			type: "stats",
 			// 是否启用该组件
@@ -139,25 +158,6 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 				siteInfo: {
 					// 未能识别的构建平台回退显示文本，可自定义
 					unknownBuildPlatform: "Unknown CI",
-				},
-			},
-		},
-		{
-			// 组件类型：日历组件
-			type: "calendar",
-			// 是否启用该组件
-			enable: true,
-			// 是否显示组件标题
-			showTitle: false,
-			// 组件位置
-			position: "sticky",
-			// 是否在文章详情页显示
-			showOnPostPage: false,
-			// 组件专属配置
-			specificConfig: {
-				calendar: {
-					// 是否显示年度文章热力图
-					showHeatmap: true,
 				},
 			},
 		},

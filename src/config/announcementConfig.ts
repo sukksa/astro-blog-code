@@ -5,7 +5,7 @@ export const announcementConfig: AnnouncementConfig = {
 	title: "",
 
 	// 公告内容
-	content: "博客刚刚上线，内容还在慢慢补齐。欢迎随便逛逛～",
+	content: "",
 
 	// 是否允许用户关闭公告
 	closable: true,

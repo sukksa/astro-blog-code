@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "Sukksa",
 
 	// 个人签名
-	bio: "记录前端学习与日常",
+	bio: "I Love the World and Everything In It",
 
 	// 链接配置
 	// icon 支持两种写法：
@@ -42,7 +42,8 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "Bangumi",
 			// 本地图标：src/icons/bangumi.svg（彩色 SVG，会保留品牌粉色）
-			icon: "local:bangumi",
+			// icon: "local:bangumi",
+			icon: "material-symbols:movie",
 			url: "https://bangumi.tv/user/726667",
 			showName: false,
 		},
