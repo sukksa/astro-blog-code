@@ -6,7 +6,7 @@ import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import type { UserSubjectCollection } from "@/types/bangumi";
 import type { NsfwMode } from "@/types/nsfw";
-import { filterNsfw, isBangumiNsfw } from "@/utils/nsfw-utils";
+import { filterBangumiItems } from "@/utils/bangumi-display-utils";
 import BangumiSection from "./BangumiSection.svelte";
 
 interface Props {
@@ -151,8 +151,8 @@ async function loadDynamicData() {
 				info.subjectType,
 				pagination,
 			);
-			// NSFW 拦截：hide 模式下过滤掉 NSFW 条目，保持标签页计数一致
-			const filtered = filterNsfw(data, nsfwMode, isBangumiNsfw);
+			// NSFW 拦截 + 去掉「抛弃」条目，保持标签页计数与列表一致
+			const filtered = filterBangumiItems(data, nsfwMode);
 			newData[catKey] = filtered;
 			newTabs.push({ id: catKey, name: info.name, count: filtered.length });
 		} catch (e) {
@@ -207,7 +207,10 @@ onMount(async () => {
 </script>
 
 {#if isDynamic && loading}
-  <GridSkeleton />
+  <GridSkeleton
+    columns={display?.columns}
+    showPagination={display?.mode !== "infinite"}
+  />
 {:else if isDynamic && error}
   <div class="text-center py-16">
     <div class="inline-flex items-center justify-center w-16 h-16 bg-(--btn-regular-bg) rounded-full mb-6 border border-(--line-divider)">

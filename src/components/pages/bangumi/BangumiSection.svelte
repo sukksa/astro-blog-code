@@ -5,7 +5,7 @@ import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import type { UserSubjectCollection } from "@/types/bangumi";
 import type { NsfwMode } from "@/types/nsfw";
-import { filterNsfw, isBangumiNsfw } from "@/utils/nsfw-utils";
+import { filterBangumiItems } from "@/utils/bangumi-display-utils";
 import Card from "./Card.svelte";
 
 interface Props {
@@ -85,8 +85,8 @@ function getFilterLabel(type: "collect" | "doing" | "wish"): string {
 	}
 }
 
-// NSFW 拦截：mode === "hide" 时过滤掉命中条目
-const safeItems = $derived(filterNsfw(items, nsfw, isBangumiNsfw));
+// NSFW 拦截 + 去掉「抛弃」条目（该状态在页面上已隐藏）
+const safeItems = $derived(filterBangumiItems(items, nsfw));
 
 const statusCounts = $derived(() => {
 	const counts: Record<string, number> = {};

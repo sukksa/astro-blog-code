@@ -296,9 +296,9 @@ export const siteConfig: SiteConfig = {
 			// "pagination" 分页（默认） | "infinite" 瀑布流：滚动到底部自动加载下一批
 			mode: "infinite",
 			// 大屏每行卡片数量：3 | 4 | 5（移动端固定 2 列）
-			columns: 5,
+			columns: 4,
 			// 每页 / 每次加载的条目数量
-			pageSize: 24,
+			pageSize: 20,
 		},
 	},
 

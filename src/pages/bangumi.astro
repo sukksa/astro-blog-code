@@ -12,7 +12,7 @@ import type {
 	UserSubjectCollectionResponse,
 } from "@/types/bangumi";
 import { formatDateI18n } from "@/utils/date-utils";
-import { filterNsfw, isBangumiNsfw } from "@/utils/nsfw-utils";
+import { filterBangumiItems } from "@/utils/bangumi-display-utils";
 
 //参考：霞葉 https://kasuha.com/posts/fuwari-enhance-ep2/
 
@@ -183,12 +183,8 @@ if (!isDynamic) {
 					bangumiConfig.username!,
 					categoryInfo.subjectType,
 				);
-				// NSFW 拦截：hide 模式下过滤掉 NSFW 条目，保持标签页计数一致
-				const filteredData = filterNsfw(
-					data,
-					bangumiConfig.nsfw,
-					isBangumiNsfw,
-				);
+				// NSFW 拦截 + 去掉「抛弃」条目，保持标签页计数与列表一致
+				const filteredData = filterBangumiItems(data, bangumiConfig.nsfw);
 				bangumiData[categoryKey] = filteredData;
 				tabs.push({
 					id: categoryKey,

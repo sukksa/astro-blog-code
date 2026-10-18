@@ -1,4 +1,25 @@
 <!-- 加载骨架：标签行 + 筛选胶囊 + 卡片网格 + 分页 -->
+<script lang="ts">
+interface Props {
+	// 大屏每行卡片数量；不传则沿用 media-grid 的响应式列数（其它页面保持原样）
+	columns?: 3 | 4 | 5;
+	// 是否显示分页骨架（瀑布流模式不需要）
+	showPagination?: boolean;
+}
+
+const { columns, showPagination = true }: Props = $props();
+
+const gridClass = $derived.by(() => {
+	if (!columns) {
+		return "media-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3";
+	}
+	const base = "grid grid-cols-2 sm:grid-cols-3 gap-3";
+	if (columns === 3) return base;
+	if (columns === 4) return `${base} lg:grid-cols-4`;
+	return `${base} lg:grid-cols-4 xl:grid-cols-5`;
+});
+</script>
+
 <div class="border-b border-(--line-divider) mb-3">
   <div class="flex min-w-max space-x-8">
     {#each [1, 2, 3, 4] as _}
@@ -13,16 +34,18 @@
   {/each}
 </div>
 <!-- 卡片网格骨架 -->
-<div class="media-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+<div class={gridClass}>
   {#each [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as _}
     <div class="rounded-xl overflow-hidden">
       <div class="aspect-2/3 bg-(--btn-regular-bg) animate-pulse"></div>
     </div>
   {/each}
 </div>
-<!-- 分页骨架 -->
-<div class="mt-6 flex items-center justify-center gap-3">
-  <div class="w-11 h-11 bg-(--btn-regular-bg) rounded-lg animate-pulse"></div>
-  <div class="w-16 h-8 bg-(--btn-regular-bg) rounded animate-pulse"></div>
-  <div class="w-11 h-11 bg-(--btn-regular-bg) rounded-lg animate-pulse"></div>
-</div>
+{#if showPagination}
+  <!-- 分页骨架 -->
+  <div class="mt-6 flex items-center justify-center gap-3">
+    <div class="w-11 h-11 bg-(--btn-regular-bg) rounded-lg animate-pulse"></div>
+    <div class="w-16 h-8 bg-(--btn-regular-bg) rounded animate-pulse"></div>
+    <div class="w-11 h-11 bg-(--btn-regular-bg) rounded-lg animate-pulse"></div>
+  </div>
+{/if}
