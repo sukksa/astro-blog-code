@@ -12,7 +12,7 @@ export const profileConfig: ProfileConfig = {
 	name: "Sukksa",
 
 	// 个人签名
-	bio: "I Love the World and Everything In It",
+	bio: "记录前端学习与日常",
 
 	// 链接配置
 	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons
@@ -21,19 +21,30 @@ export const profileConfig: ProfileConfig = {
 	// `pnpm add @iconify-json/<icon-set-name>`
 	// showName: true 时显示图标和名称，false 时只显示图标
 	links: [
-		// 想展示 GitHub / 邮箱时取消下面两条注释并填上你自己的地址
-		// {
-		// 	name: "GitHub",
-		// 	icon: "fa7-brands:github",
-		// 	url: "https://github.com/yourname",
-		// 	showName: false,
-		// },
-		// {
-		// 	name: "Email",
-		// 	icon: "fa7-solid:envelope",
-		// 	url: "mailto:you@example.com",
-		// 	showName: false,
-		// },
+		{
+			name: "GitHub",
+			icon: "fa7-brands:github",
+			url: "https://github.com/sukksa",
+			showName: false,
+		},
+		{
+			name: "Email",
+			icon: "fa7-solid:envelope",
+			url: "mailto:sukksa@qq.com",
+			showName: false,
+		},
+		{
+			name: "Bilibili",
+			icon: "fa7-brands:bilibili",
+			url: "https://space.bilibili.com/74396531",
+			showName: false,
+		},
+		{
+			name: "Bangumi",
+			icon: "material-symbols:live-tv",
+			url: "https://bangumi.tv/user/726667",
+			showName: false,
+		},
 		{
 			name: "RSS",
 			icon: "fa7-solid:rss",

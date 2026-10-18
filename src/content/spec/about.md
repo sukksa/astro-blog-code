@@ -1,23 +1,21 @@
-# 关于我
+# 关于
 
-你好，我是 **Sukksa**。
+> I Love the World and Everything In It
 
-> I Love the World and Everything In It.
+## 「沃尔库塔-5」
 
-## 这个站是什么
-
-一个用来放笔记和想法的地方。写代码时踩过的坑、读到的句子、突然想通的一点小事，都往这儿存。不追更新频率，只希望写下来的东西过一阵子自己还想翻。
+- 邮件：[sukksa@qq.com](mailto:sukksa@qq.com)
+- GitHub：[@sukksa](https://github.com/sukksa)
+- Bilibili：[space.bilibili.com/74396531](https://space.bilibili.com/74396531)
+- Bangumi：[bangumi.tv/user/726667](https://bangumi.tv/user/726667)
 
 ## 关于本站
 
-- 用 [Astro](https://astro.build/) 构建，[Firefly](https://github.com/CuteLeaf/Firefly) 主题（基于 [Fuwari](https://github.com/saicaca/fuwari) 二次开发）
-- 全静态，托管在 Vercel
-- 文章是仓库里的 Markdown，没有后台
+这里放前端学习笔记和一些零碎的想法，大多写于 2021 年之后。
 
-## 找到我
-
+- 早年写在 [Hexo](https://hexo.io/) 上，现在迁到 [Astro](https://astro.build/) + [Firefly 主题](https://github.com/CuteLeaf/Firefly)，全静态托管在 Vercel
+- 文章是仓库里的 Markdown，没有后台，改完 push 即可发布
 - 订阅：[RSS](/rss/) / [Atom](/atom/)
-- 留言：[友情链接](/friends/) 页面里有联系方式，或者等评论系统配置好再来聊
 
 ---
 

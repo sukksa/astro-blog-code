@@ -1,0 +1,15 @@
+---
+title: 使用着色器绘制波浪
+published: 2025-05-17 03:05:53
+description: >-
+  通过 perlin noise 增加在主浪身上的小波浪 循环调用 perlin noise 显得更加无序 但是多次调用 perlin
+  noise，会导致小波浪的频率变小，但我们希望和主浪保持一样的高度，所以乘以 i 扩大频率，除以 i 缩小高度
+tags:
+  - Threejs
+  - shader
+category: shader
+---
+
+通过 perlin noise 增加在主浪身上的小波浪
+循环调用 perlin noise 显得更加无序
+但是多次调用 perlin noise，会导致小波浪的频率变小，但我们希望和主浪保持一样的高度，所以乘以 i 扩大频率，除以 i 缩小高度

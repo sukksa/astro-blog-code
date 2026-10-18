@@ -53,10 +53,18 @@ export const siteConfig: SiteConfig = {
 
 	// 站点描述
 	description:
-		"Sukksa 的个人博客，记录代码、读书与生活里那些值得留下的瞬间。I Love the World and Everything In It.",
+		"Sukksa 的个人博客：记录前端学习与日常。I Love the World and Everything In It.",
 
 	// 站点关键词
-	keywords: ["Sukksa", "个人博客", "博客", "随笔", "笔记", "代码", "Astro"],
+	keywords: [
+		"Sukksa",
+		"前端",
+		"JavaScript",
+		"Vue",
+		"TypeScript",
+		"个人博客",
+		"学习笔记",
+	],
 
 	// 主题色
 	themeColor: {
@@ -125,7 +133,7 @@ export const siteConfig: SiteConfig = {
 	},
 
 	// 站点开始日期，用于统计运行天数
-	siteStartDate: "2026-10-18",
+	siteStartDate: "2021-04-28",
 
 	// 站点时区（IANA 时区字符串），用于格式化bangumi、rss里的构建日期时间等等..
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换

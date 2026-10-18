@@ -80,7 +80,7 @@ export const backgroundWallpaper: BackgroundWallpaperConfig = {
 			// 主页横幅副标题
 			subtitle: [
 				"I Love the World and Everything In It",
-				"记录代码、阅读，与生活里的小事",
+				"记录前端学习与日常",
 				"把想说的话，慢慢写下来",
 			],
 			// 主页横幅副标题字体大小
