@@ -449,6 +449,7 @@ export const ru: Translation = {
 	[Key.siteStatsDynamicCount]: "Публикации",
 	[Key.siteStatsCategoryCount]: "Категории",
 	[Key.siteStatsTagCount]: "Теги",
+	[Key.siteStatsAnimeCount]: "Аниме",
 	[Key.siteStatsTotalWords]: "Всего слов",
 	[Key.siteStatsRunningDays]: "Дней работы",
 	[Key.siteStatsLastUpdate]: "Последняя активность",

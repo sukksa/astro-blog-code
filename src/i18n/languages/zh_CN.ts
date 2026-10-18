@@ -437,6 +437,7 @@ export const zh_CN: Translation = {
 	[Key.siteStatsDynamicCount]: "动态",
 	[Key.siteStatsCategoryCount]: "分类",
 	[Key.siteStatsTagCount]: "标签",
+	[Key.siteStatsAnimeCount]: "追番",
 	[Key.siteStatsTotalWords]: "总字数",
 	[Key.siteStatsRunningDays]: "运行时长",
 	[Key.siteStatsLastUpdate]: "最后活动",

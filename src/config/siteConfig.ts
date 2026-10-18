@@ -103,7 +103,7 @@ export const siteConfig: SiteConfig = {
 
 	// 导航栏配置
 	navbar: {
-		// 导航栏Logo
+		// 导航栏Logo（不设置则不显示标题旁的图标）
 		// 支持三种类型：
 		// 1. Astro图标库: { type: "icon", value: "material-symbols:home-pin-outline" }
 		// 2. 本地图片（public目录，不优化）: { type: "image", value: "/assets/images/logo.webp", alt: "Logo" }
@@ -112,12 +112,12 @@ export const siteConfig: SiteConfig = {
 		// image 和 url 类型可额外设置 valueDark，用于暗色模式下显示另一张图片，不设置则亮暗色共用 value
 		// 例如: { type: "image", value: "assets/images/logo.png", valueDark: "assets/images/logo-dark.png", alt: "Logo" }
 		// 使用 Astro 图标库时不需要设置 valueDark，图标会自动跟随主题亮暗色切换
-		logo: {
-			type: "image",
-			value: "assets/images/logo/firefly-light.png",
-			valueDark: "assets/images/logo/firefly-dark.png",
-			alt: "🍀",
-		},
+		// logo: {
+		// 	type: "image",
+		// 	value: "assets/images/logo/firefly-light.png",
+		// 	valueDark: "assets/images/logo/firefly-dark.png",
+		// 	alt: "🍀",
+		// },
 		// 导航栏标题
 		title: "Sukksa's Blog",
 		// 全宽导航栏，导航栏是否占满屏幕宽度

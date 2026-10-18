@@ -5,6 +5,7 @@ import { siteConfig } from "@/config";
 import I18nKey from "@/i18n/i18nKey";
 import { i18n } from "@/i18n/translation";
 import type { WidgetComponentConfig } from "@/types/config";
+import { getBangumiAnimeCount } from "@/utils/bangumi-count";
 import {
 	getCategoryList,
 	getSortedPosts,
@@ -70,7 +71,17 @@ const lastPostDate = lastActivityDate ? lastActivityDate.toISOString() : null;
 
 const todayText = i18n(I18nKey.today);
 
-const stats = [
+interface StatItem {
+	icon: string;
+	label: string;
+	value: number;
+	formatted?: boolean;
+	suffix?: string;
+	dynamic?: boolean;
+	id?: string;
+}
+
+const stats: StatItem[] = [
 	{
 		icon: "material-symbols:article-outline",
 		label: i18n(I18nKey.siteStatsPostCount),
@@ -109,6 +120,17 @@ const stats = [
 		id: "last-update",
 	},
 ];
+
+// 追番：Bangumi 动画「在看 + 看过」的总数，构建期取一次，为 0 时不显示这一行
+const bangumiAnimeCount = await getBangumiAnimeCount();
+if (bangumiAnimeCount > 0) {
+	// 插在「标签」之后（文章、分类、标签 = 前 3 项）
+	stats.splice(3, 0, {
+		icon: "material-symbols:live-tv",
+		label: i18n(I18nKey.siteStatsAnimeCount),
+		value: bangumiAnimeCount,
+	});
+}
 ---
 
 <WidgetLayout name={i18n(I18nKey.siteStats)} showTitle={showTitle} id="site-stats" class={className} style={style}>

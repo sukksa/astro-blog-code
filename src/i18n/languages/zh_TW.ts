@@ -439,6 +439,7 @@ export const zh_TW: Translation = {
 	[Key.siteStatsDynamicCount]: "動態",
 	[Key.siteStatsCategoryCount]: "分類",
 	[Key.siteStatsTagCount]: "標籤",
+	[Key.siteStatsAnimeCount]: "追番",
 	[Key.siteStatsTotalWords]: "總字數",
 	[Key.siteStatsRunningDays]: "運行時長",
 	[Key.siteStatsLastUpdate]: "最後活動",

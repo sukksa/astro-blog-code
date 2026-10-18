@@ -431,6 +431,7 @@ enum I18nKey {
 	siteStatsDynamicCount = "siteStatsDynamicCount",
 	siteStatsCategoryCount = "siteStatsCategoryCount",
 	siteStatsTagCount = "siteStatsTagCount",
+	siteStatsAnimeCount = "siteStatsAnimeCount",
 	siteStatsTotalWords = "siteStatsTotalWords",
 	siteStatsRunningDays = "siteStatsRunningDays",
 	siteStatsLastUpdate = "siteStatsLastUpdate",

@@ -1,5 +1,4 @@
 {
-  "src:assets/images/avatar.avif": "dcd8d5d1cecabea9a9",
   "public:gallery/firefly-2026/cover.avif": "7588a28a8f989e8d88",
   "public:gallery/firefly-2026/1.avif": "c8bca9dde6d2babfb5",
   "src:assets/images/MobileWallpaper/m6.avif": "ccd0cbdddddbcccac9",
@@ -19,7 +18,6 @@
   "public:assets/images/sponsor/wechat.png": "d5d5d5dad9d7dbd8cf",
   "public:assets/images/sponsor/alipay.png": "8ebbde91bedf93c0e0",
   "public:assets/images/ad/ad1.webp": "a1b8b68a8e918c8f93",
-  "src:assets/images/avatar.webp": "37ac992aa6912f7886",
   "public:images/vue/vue生命周期1.png": "e8f0e7e8f2e9e9f2ed",
   "public:images/vue/vue_脚手架_render函数2.png": "f7f8f8fefefef9f9fa",
   "public:images/vue/vue_脚手架_render函数.png": "fbeaebede3e3f1efef",
@@ -34,5 +32,6 @@
   "public:images/javascript/组合继承.png": "eae9e9e7e7e7ebebeb",
   "public:images/javascript/原型链2.png": "eaeaeaf5f4f4efedee",
   "public:images/javascript/原型链1.png": "e9e9e9f6f6f6f2f2f2",
-  "public:images/javascript/事件循环模型.png": "eff0dcedd2b1f2e8b7"
+  "public:images/javascript/事件循环模型.png": "eff0dcedd2b1f2e8b7",
+  "src:assets/images/avatar.jpg": "a9a9a99f9f9fa6a6a6"
 }

@@ -445,6 +445,7 @@ export const ko: Translation = {
 	[Key.siteStatsDynamicCount]: "일상",
 	[Key.siteStatsCategoryCount]: "카테고리",
 	[Key.siteStatsTagCount]: "태그",
+	[Key.siteStatsAnimeCount]: "애니",
 	[Key.siteStatsTotalWords]: "총 단어 수",
 	[Key.siteStatsRunningDays]: "운영 일수",
 	[Key.siteStatsLastUpdate]: "최근 활동",
