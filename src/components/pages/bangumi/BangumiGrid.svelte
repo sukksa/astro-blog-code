@@ -25,6 +25,12 @@ interface Props {
 		nsfw?: NsfwMode;
 	};
 	nsfw?: NsfwMode; // NSFW 处理："off" | "blur" | "hide"
+	// 列表展示配置（来自 siteConfig.bangumi.display）
+	display?: {
+		mode?: "pagination" | "infinite";
+		columns?: 3 | 4 | 5;
+		pageSize?: number;
+	};
 }
 
 const {
@@ -34,6 +40,7 @@ const {
 	subjectBaseUrl,
 	fetchConfig,
 	nsfw,
+	display,
 }: Props = $props();
 
 const nsfwMode = $derived(nsfw ?? fetchConfig?.nsfw ?? "off");
@@ -217,7 +224,9 @@ onMount(async () => {
       sectionId={tab.id}
       items={bangumiData[tab.id] || []}
       isActive={tab.id === activeTab}
-      itemsPerPage={24}
+      itemsPerPage={display?.pageSize ?? 24}
+      displayMode={display?.mode ?? "pagination"}
+      columns={display?.columns ?? 5}
       {subjectBaseUrl}
       nsfw={nsfwMode}
     />

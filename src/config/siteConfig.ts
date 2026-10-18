@@ -276,7 +276,8 @@ export const siteConfig: SiteConfig = {
 		// dynamic 模式在浏览器中实时请求 API，始终显示最新数据
 		mode: "dynamic",
 		// Bangumi API 地址
-		apiUrl: "https://api.bgm.tv",
+		// apiUrl: "https://api.bgm.tv",
+		apiUrl: "https://api.bangumi.vip", // 镜像站
 		// 详情页地址
 		subjectBaseUrl: "https://bangumi.tv/subject/",
 		// 条目类型排序，数组中的类型将按顺序优先展示
@@ -290,6 +291,15 @@ export const siteConfig: SiteConfig = {
 		},
 		// NSFW 处理："off" 不过滤 | "blur" 仅模糊封面 | "hide" 隐藏条目
 		nsfw: "hide",
+		// 追番页列表展示方式
+		display: {
+			// "pagination" 分页（默认） | "infinite" 瀑布流：滚动到底部自动加载下一批
+			mode: "infinite",
+			// 大屏每行卡片数量：3 | 4 | 5（移动端固定 2 列）
+			columns: 5,
+			// 每页 / 每次加载的条目数量
+			pageSize: 24,
+		},
 	},
 
 	// ── VNDB配置 ──────────────────────────────────

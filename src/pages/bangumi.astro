@@ -50,6 +50,17 @@ const bangumiConfig = {
 };
 //////////////////////////////////////////////////
 
+// 列表展示配置（来自 siteConfig.bangumi.display）
+const displayConfig: {
+	mode: "pagination" | "infinite";
+	columns: 3 | 4 | 5;
+	pageSize: number;
+} = {
+	mode: siteConfig.bangumi?.display?.mode ?? "pagination",
+	columns: siteConfig.bangumi?.display?.columns ?? 5,
+	pageSize: siteConfig.bangumi?.display?.pageSize ?? 24,
+};
+
 const isDynamic = bangumiConfig.mode === "dynamic";
 
 // 分类映射
@@ -259,6 +270,7 @@ const activeTab = tabs[0]?.id || "anime";
             <BangumiGrid
               client:load
               subjectBaseUrl={bangumiConfig.subjectBaseUrl}
+              display={displayConfig}
               fetchConfig={{
                 username: bangumiConfig.username!,
                 apiUrl: bangumiConfig.apiUrl,
@@ -287,7 +299,7 @@ const activeTab = tabs[0]?.id || "anime";
         </div>
       ) : tabs.length > 0 ? (
         <>
-          <BangumiGrid client:load tabs={tabs} initialActiveTab={activeTab} bangumiData={bangumiData} subjectBaseUrl={bangumiConfig.subjectBaseUrl} nsfw={bangumiConfig.nsfw} />
+          <BangumiGrid client:load tabs={tabs} initialActiveTab={activeTab} bangumiData={bangumiData} subjectBaseUrl={bangumiConfig.subjectBaseUrl} nsfw={bangumiConfig.nsfw} display={displayConfig} />
         </>
       ) : (
         <div class="text-center py-16">

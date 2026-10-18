@@ -15,6 +15,10 @@ interface Props {
 	itemsPerPage?: number;
 	subjectBaseUrl?: string;
 	nsfw?: NsfwMode; // NSFW 处理："off" | "blur" | "hide"
+	// 列表展示方式："pagination" 分页 | "infinite" 瀑布流（滚动到底自动加载）
+	displayMode?: "pagination" | "infinite";
+	// 大屏每行卡片数量，移动端固定 2 列
+	columns?: 3 | 4 | 5;
 }
 
 const {
@@ -24,6 +28,8 @@ const {
 	itemsPerPage = 24,
 	subjectBaseUrl,
 	nsfw = "off",
+	displayMode = "pagination",
+	columns = 5,
 }: Props = $props();
 
 const STATUS_MAP: Record<number, string> = {
@@ -116,11 +122,12 @@ const filters = $derived(() => {
 			label: i18n(I18nKey.bangumiFilterOnHold),
 			count: counts.on_hold || 0,
 		},
-		{
-			value: "dropped",
-			label: i18n(I18nKey.bangumiFilterDropped),
-			count: counts.dropped || 0,
-		},
+		// 「抛弃」筛选已隐藏：条目仍会出现在「全部」里，需要恢复时把下面这段取消注释
+		// {
+		// 	value: "dropped",
+		// 	label: i18n(I18nKey.bangumiFilterDropped),
+		// 	count: counts.dropped || 0,
+		// },
 	].filter((f) => f.value === "all" || f.count > 0);
 });
 
@@ -148,9 +155,54 @@ const pagedItems = $derived(
 	),
 );
 
+// ── 瀑布流（无限滚动）─────────────────────────────────
+const isInfinite = $derived(displayMode === "infinite");
+
+// 已加载条目数量，滚到底部时递增
+let visibleCount = $state(itemsPerPage);
+
+const visibleItems = $derived(
+	isInfinite ? filteredItems.slice(0, visibleCount) : pagedItems,
+);
+
+const hasMore = $derived(isInfinite && visibleCount < filteredItems.length);
+
+// 底部哨兵元素：进入视口就加载下一批
+let sentinelEl = $state<HTMLDivElement | null>(null);
+
+// 大屏列数 3 / 4 / 5，移动端固定 2 列
+const gridClass = $derived.by(() => {
+	const base = "grid grid-cols-2 sm:grid-cols-3 gap-3";
+	if (columns === 3) return base;
+	if (columns === 4) return `${base} lg:grid-cols-4`;
+	return `${base} lg:grid-cols-4 xl:grid-cols-5`;
+});
+
+$effect(() => {
+	if (!isInfinite || !sentinelEl) return;
+
+	const observer = new IntersectionObserver(
+		(entries) => {
+			if (!entries.some((entry) => entry.isIntersecting)) return;
+			if (visibleCount < filteredItems.length) {
+				visibleCount = Math.min(
+					visibleCount + itemsPerPage,
+					filteredItems.length,
+				);
+			}
+		},
+		// 提前一点触发，滚动体验更顺
+		{ rootMargin: "320px 0px" },
+	);
+
+	observer.observe(sentinelEl);
+	return () => observer.disconnect();
+});
+
 function handleFilterChange(filter: string) {
 	activeFilter = filter;
 	currentPage = 1;
+	visibleCount = itemsPerPage;
 }
 
 function goToPage(page: number) {
@@ -168,8 +220,8 @@ function goToPage(page: number) {
       onFilterChange={handleFilterChange}
     />
 
-    <div class="media-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
-      {#each pagedItems as item (item.subject_id)}
+    <div class={gridClass}>
+      {#each visibleItems as item (item.subject_id)}
         <div
           class="media-item"
           data-item-section={sectionId}
@@ -180,12 +232,23 @@ function goToPage(page: number) {
       {/each}
     </div>
 
-    <ClientPagination
-      totalItems={filteredItems.length}
-      itemsPerPage={itemsPerPage}
-      currentPage={currentPage}
-      onPageChange={goToPage}
-    />
+    {#if isInfinite}
+      {#if hasMore}
+        <div
+          bind:this={sentinelEl}
+          class="h-10"
+          aria-hidden="true"
+          data-infinite-sentinel={sectionId}
+        ></div>
+      {/if}
+    {:else}
+      <ClientPagination
+        totalItems={filteredItems.length}
+        itemsPerPage={itemsPerPage}
+        currentPage={currentPage}
+        onPageChange={goToPage}
+      />
+    {/if}
   {:else}
     <div class="text-center py-12">
       <h3 class="text-xl font-medium text-gray-600 dark:text-gray-400 mb-2">{i18n(I18nKey.bangumiNoData)}</h3>

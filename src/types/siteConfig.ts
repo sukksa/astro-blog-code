@@ -190,6 +190,12 @@ export type SiteConfig = {
 			real?: boolean;
 		};
 		nsfw?: NsfwMode; // NSFW 处理："off" 不过滤 | "blur" 仅模糊封面 | "hide" 隐藏条目
+		// 追番页列表展示方式
+		display?: {
+			mode?: "pagination" | "infinite"; // pagination=分页 | infinite=瀑布流（滚动到底自动加载下一批）
+			columns?: 3 | 4 | 5; // 大屏每行卡片数量；移动端固定 2 列
+			pageSize?: number; // 每页 / 每次加载的条目数量
+		};
 	};
 
 	// VNDB 配置
