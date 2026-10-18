@@ -15,10 +15,10 @@ export const profileConfig: ProfileConfig = {
 	bio: "记录前端学习与日常",
 
 	// 链接配置
-	// 已经预装的图标集：fa7-brands，fa7-regular，fa7-solid，material-symbols，simple-icons
-	// 访问https://icones.js.org/ 获取图标代码，
-	// 如果想使用尚未包含相应的图标集，则需要安装它
-	// `pnpm add @iconify-json/<icon-set-name>`
+	// icon 支持两种写法：
+	// 1. Iconify 图标名，如 "fa7-brands:github"（访问 https://icones.js.org/ 查代码，
+	//    用到未安装的图标集时先 `pnpm add @iconify-json/<icon-set-name>`）
+	// 2. src/icons 下的本地 SVG，用 "local:文件名"（不带 .svg），如 "local:bangumi"
 	// showName: true 时显示图标和名称，false 时只显示图标
 	links: [
 		{
@@ -41,7 +41,8 @@ export const profileConfig: ProfileConfig = {
 		},
 		{
 			name: "Bangumi",
-			icon: "material-symbols:live-tv",
+			// 本地图标：src/icons/bangumi.svg（彩色 SVG，会保留品牌粉色）
+			icon: "local:bangumi",
 			url: "https://bangumi.tv/user/726667",
 			showName: false,
 		},
@@ -51,11 +52,11 @@ export const profileConfig: ProfileConfig = {
 			url: "/rss/",
 			showName: false,
 		},
-		{
-			name: "Atom",
-			icon: "fa7-solid:atom",
-			url: "/atom/",
-			showName: false,
-		},
+		// {
+		// 	name: "Atom",
+		// 	icon: "fa7-solid:atom",
+		// 	url: "/atom/",
+		// 	showName: false,
+		// },
 	],
 };
