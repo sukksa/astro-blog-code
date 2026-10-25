@@ -33,6 +33,30 @@ html.is-page-transitioning .banner-home-text-overlay {
     animation: banner-fadeInUp 0.3s ease-out 0.3s both;
 }
 
+/* ===== 横幅文案可选中 =====
+   文案挂在 #banner-overlay-container 里，该容器是 pointer-events: none
+   （为了让壁纸/下方内容能收到点击），文字继承后鼠标会直接穿透到图片上，
+   表现为「标题在图片下面、选不中」。这里只在文字本身上重新开启命中测试。
+   仅限桌面端（精确指针）：触屏上开启会让在标题区域拖拽变成选字、挡住页面滚动。 */
+@media (hover: hover) and (pointer: fine) {
+    .banner-home-text-overlay .banner-title,
+    .banner-home-text-overlay .banner-subtitle {
+        pointer-events: auto;
+        -webkit-user-select: text;
+        user-select: text;
+        cursor: text;
+    }
+}
+
+/* 横幅文字是白色的，默认 ::selection 底色在亮色模式下太浅（文字会和选区一起变白），
+   这里给横幅文案单独一个深色半透明选区，保证选中的字仍然看得清 */
+.banner-home-text-overlay .banner-title::selection,
+.banner-home-text-overlay .banner-subtitle::selection {
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    text-shadow: none;
+}
+
 @keyframes banner-fadeInUp {
     from {
         opacity: 0;
