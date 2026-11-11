@@ -436,6 +436,18 @@ body.is-home #wallpaper-wrapper.wallpaper-fullscreen img[class*="object-cover"] 
     filter: blur(var(--fullscreen-blur, 0px)) !important;
 }
 
+/* Fullscreen wrapper 不接收指针事件以免遮挡页面；仅让 banner 文字本身可选中 */
+html[data-wallpaper-mode="fullscreen"] #banner-overlay-container .banner-title,
+html[data-wallpaper-mode="fullscreen"] #banner-overlay-container .banner-subtitle,
+html[data-wallpaper-mode="fullscreen"] #banner-overlay-container .banner-page-title-text,
+html[data-wallpaper-mode="fullscreen"] #banner-overlay-container .banner-post-title,
+html[data-wallpaper-mode="fullscreen"] #banner-overlay-container .banner-post-description,
+html[data-wallpaper-mode="fullscreen"] #banner-overlay-container .banner-post-meta-list {
+    pointer-events: auto;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
 /* Fullscreen 模式隐藏 overlay 专属的半透明效果 */
 #wallpaper-wrapper.wallpaper-fullscreen .banner-home-text-overlay,
 #wallpaper-wrapper.wallpaper-fullscreen .banner-page-title-overlay,
