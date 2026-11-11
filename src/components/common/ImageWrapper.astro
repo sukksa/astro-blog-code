@@ -93,8 +93,8 @@ if (isLocal) {
 }
 
 const imageClass = fadeIn
-	? "w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-out"
-	: "w-full h-full object-cover";
+	? "w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-out pointer-events-none"
+	: "w-full h-full object-cover pointer-events-none";
 const imageStyle = `object-position: ${position}`;
 
 // 检查是否需要添加 referrerpolicy（仅对非本地图片）

@@ -533,27 +533,27 @@ const wallpaperPosition = state.isFullscreenMode
         <BackgroundPlayer playerUrl={backgroundWallpaper.src.playerUrl} playerMode={backgroundWallpaper.common?.playerMode ?? "order"} />
     )}
 
-    <div id="banner-dim-container" class="absolute inset-0 z-10 pointer-events-none">
+    <div id="banner-dim-container" class="absolute inset-0 z-10">
         {state.showBannerDim && <div class="banner-dim-overlay absolute inset-0" style={`background: rgba(0, 0, 0, ${state.dimOpacity})`}></div>}
     </div>
 
-    <div id="banner-overlay-container" class="absolute inset-0 z-20 pointer-events-none transition-swup-fade">    <!-- Home page text overlay - 始终渲染以便切换模式时控制显示 -->
-    <BannerHomeTextOverlay showHomeText={state.showHomeText} initialRandomSubtitle={state.initialRandomSubtitle} />
+    <div id="banner-overlay-container" class="absolute inset-0 z-20 transition-swup-fade">    <!-- Home page text overlay - 始终渲染以便切换模式时控制显示 -->
+        <BannerHomeTextOverlay showHomeText={state.showHomeText} initialRandomSubtitle={state.initialRandomSubtitle} />
 
-    <!-- Non-home non-post page title overlay (desktop only) -->
-    {state.showBannerPageTitle && (
-        <div class="banner-page-title-overlay absolute inset-0 z-20 hidden lg:flex items-center justify-center pointer-events-none">
-            <div class="w-4/5 lg:w-3/4 text-center mb-0">
-                <div class="banner-page-title font-bold text-white leading-tight inline-flex items-center justify-center gap-3">
-                    {/* <Icon name="material-symbols:bookmark-rounded" class="banner-page-title-icon" /> */}
-                    <span class="banner-page-title-text">{title}</span>
+        <!-- Non-home non-post page title overlay (desktop only) -->
+        {state.showBannerPageTitle && (
+            <div class="banner-page-title-overlay absolute inset-0 z-20 hidden lg:flex items-center justify-center">
+                <div class="w-4/5 lg:w-3/4 text-center mb-0">
+                    <div class="banner-page-title font-bold text-white leading-tight inline-flex items-center justify-center gap-3">
+                        {/* <Icon name="material-symbols:bookmark-rounded" class="banner-page-title-icon" /> */}
+                        <span class="banner-page-title-text">{title}</span>
+                    </div>
                 </div>
             </div>
-        </div>
-    )}
+        )}
 
-    <!-- Non-home post banner meta overlay (desktop only) -->
-    <BannerPostMetaOverlay showBannerPostMeta={state.showBannerPostMeta} bannerPostInfoMode={state.bannerPostInfoMode} bannerDescriptionWidth={state.bannerDescriptionWidth} bannerPostMeta={bannerPostMeta} />
+        <!-- Non-home post banner meta overlay (desktop only) -->
+        <BannerPostMetaOverlay showBannerPostMeta={state.showBannerPostMeta} bannerPostInfoMode={state.bannerPostInfoMode} bannerDescriptionWidth={state.bannerDescriptionWidth} bannerPostMeta={bannerPostMeta} />
 
     </div>
 
@@ -617,7 +617,7 @@ const wallpaperPosition = state.isFullscreenMode
 
     <!-- Gradient transition - 当水波纹关闭时显示，提供壁纸底部到背景色的平滑过渡 -->
     {state.shouldRenderGradient ? (
-    <div class={`wallpaper-gradient absolute bottom-0 left-0 w-full pointer-events-none
+    <div class={`wallpaper-gradient absolute bottom-0 left-0 w-full
         ${!state.gradientEnabledOnMobile ? 'hidden' : ''} ${!state.gradientEnabledOnDesktop ? 'md:hidden' : ''} ${state.gradientEnabledOnDesktop ? 'md:block' : ''}`}
         id="wallpaper-gradient"
         style={`height: ${state.gradientHeight}; background: linear-gradient(to bottom, transparent, var(--page-bg));`}>
